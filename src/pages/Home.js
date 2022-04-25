@@ -18,7 +18,7 @@ const Home=()=>{
           <img src={CatImage} className="rounded-circle" width={350} height={350} />
         </LogoImage>
         <Desc className="text-primary">MBTI를 기반으로 하는 나랑 잘맞는 고양이 찾기!</Desc>
-        <Button style={{fontFamily:'fontBold'}} onClick={handleClickButton}>테스트 시작하기</Button>
+        <Button style={{fontFamily:'LeeSeoyun'}} onClick={handleClickButton}>테스트 시작하기</Button>
       </Contents>
     </Wrapper>
   )
@@ -33,13 +33,14 @@ const Header = styled.div`
   display:flex;
   justify-content:center;
   align-item:center;
-  font-family:"fontBold";
+  font-family:"LeeSeoyun";
 `
 const Contents = styled.div`
   display:flex;
   justify-content:center;
   align-item:center;
   flex-direction:column;
+  font-family:"LeeSeoyun";
 `
 const Title = styled.div`
   font-size:30pt;
@@ -52,5 +53,5 @@ const Desc = styled.div`
   font-size:20pt;
   margin-top:20px;
   margin-bottom:20px;
-  font-family:"fontBold";
+  font-family:"LeeSeoyun";
 `
