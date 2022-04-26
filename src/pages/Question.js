@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {ProgressBar, Button} from 'react-bootstrap'
 import {QuestionData} from '../asset/data/questiondata'
-import { useNavigate } from 'react-router-dom'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 
 const Question=()=>{
   const [questionNo,setQuestionNo]=React.useState(0) //0으로 초기화
@@ -24,8 +24,18 @@ const Question=()=>{
       setQuestionNo(questionNo+1) // 1을 더함
     }
     else{ // 총 페이지 수와 같을 때
+      //mbti도출
+      const mbti = newScore.reduce( // reduce는 결과 누적
+        (acc, curr)=>
+          acc + (curr.score >=2 ? curr.id.substring(0,1) : curr.id.substring(1,2)),""
+      )
       //결과 페이지로 이동
-      navigate('/result')
+      navigate({
+        pathname: '/result',
+        search: `?${createSearchParams({
+          mbti: mbti
+        })}`
+      })
     }
     setQuestionNo(questionNo + 1)
     // if(type==="EI"){
@@ -82,7 +92,7 @@ const Question=()=>{
   return(
     <Wrapper>
       <ProgressBar striped variant="danger" now={(questionNo/QuestionData.length)*100} style={{margin:'20px'}}/>
-      <Title>{QuestionData[0].title}</Title>
+      <Title>{QuestionData[questionNo].title}</Title>
       <ButtonGroup>
         <Button style={{width:"40%", minHeight:"200px", fontSize:'20pt'}} onClick={()=>
         handleClickButton(1,QuestionData[questionNo].type)}>
