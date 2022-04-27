@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import CatImage from '../asset/cat_image.jpg'
 import Button from 'react-bootstrap/Button'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { ResultData } from '../asset/data/resultdata'
+import KakaoShareButton from '../components/KakaoShareButton'
 
 const Result=()=>{
   const navigate = useNavigate()
@@ -24,7 +24,10 @@ const Result=()=>{
           <img src={resultData.image} className="rounded-circle" width={350} height={350} alt="고양이 로고"/>
         </LogoImage>
         <Desc className="text-primary">예비 집사님과 찰떡궁합인 고양이는 {resultData.name}입니다.</Desc>
-        <Button style={{fontFamily:'LeeSeoyun'}} onClick={()=>navigate('/')}>테스트 다시하기</Button>
+        <ButtonGroup>
+          <Button style={{fontFamily:'LeeSeoyun'}} onClick={()=>navigate('/')}>테스트 다시하기</Button>
+          <KakaoShareButton data={resultData}/>
+        </ButtonGroup>
       </Contents>
     </Wrapper>
   )
@@ -60,4 +63,7 @@ const Desc = styled.div`
   margin-top:20px;
   margin-bottom:20px;
   font-family:"LeeSeoyun";
+`
+const ButtonGroup = styled.div`
+  display:flex;
 `
